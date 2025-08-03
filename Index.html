@@ -1,0 +1,2238 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WitalCar - Profesjonalna pomoc w zakupie samochodu</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary: #2c3e50;
+        --secondary: #e74c3c;
+        --accent: #3498db;
+        --light: #f8f9fa;
+        --dark: #212529;
+        --gray: #6c757d;
+        --light-gray: #e9ecef;
+        --transition: all 0.3s ease;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        color: var(--dark);
+        line-height: 1.6;
+        background-color: #f5f7fa;
+      }
+
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+      }
+
+      /* Header */
+      header {
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+          url("https://images.unsplash.com/photo-1489824904134-891ab64532f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white;
+        padding: 0 20px;
+        position: relative;
+      }
+
+      .logo {
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: white;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .logo i {
+        color: var(--secondary);
+      }
+
+      .header-content h1 {
+        font-size: 2.8rem;
+        margin-bottom: 20px;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .header-content p {
+        font-size: 1.25rem;
+        margin-bottom: 30px;
+        max-width: 800px;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+      }
+
+      .btn {
+        display: inline-block;
+        background: var(--secondary);
+        color: white;
+        padding: 12px 35px;
+        border: none;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: var(--transition);
+        box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn:hover {
+        background: #c0392b;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+      }
+
+      .btn:active {
+        transform: translateY(1px);
+      }
+
+      /* Language switcher */
+      .lang-switcher {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 100;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 30px;
+        padding: 8px 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        display: flex;
+        gap: 10px;
+      }
+
+      .lang-switcher a {
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 600;
+        padding: 5px 10px;
+        border-radius: 20px;
+        transition: var(--transition);
+      }
+
+      .lang-switcher a:hover {
+        background: var(--light-gray);
+      }
+
+      .lang-switcher a.active {
+        background: var(--secondary);
+        color: white;
+      }
+
+      /* Navigation */
+      nav {
+        background: rgba(44, 62, 80, 0.95);
+        color: white;
+        padding: 15px 0;
+        position: sticky;
+        top: 0;
+        z-index: 99;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+      }
+
+      nav .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .nav-links.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--primary);
+        padding: 20px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        margin: 10px 0;
+        font-size: 1.1rem;
+        transition: var(--transition);
+        padding: 8px 15px;
+        border-radius: 5px;
+      }
+
+      .nav-links a:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 21px;
+        cursor: pointer;
+        z-index: 101;
+      }
+
+      .hamburger span {
+        display: block;
+        height: 3px;
+        width: 100%;
+        background: white;
+        border-radius: 3px;
+        transition: var(--transition);
+      }
+
+      .hamburger.active span:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+      }
+
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger.active span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+      }
+
+      /* Sections */
+      section {
+        padding: 80px 0;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 50px;
+        font-size: 2.3rem;
+        color: var(--primary);
+        position: relative;
+        display: inline-block;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        width: 70px;
+        height: 4px;
+        background: var(--secondary);
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 2px;
+      }
+
+      /* About */
+      .about-content {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      }
+
+      .about-text {
+        flex: 1;
+      }
+
+      .about-text p {
+        margin-bottom: 20px;
+        line-height: 1.8;
+      }
+
+      .about-image {
+        flex: 1;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .about-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: transform 0.5s ease;
+      }
+
+      .about-image:hover img {
+        transform: scale(1.05);
+      }
+
+      /* Services */
+      .services {
+        background: var(--light);
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .service-card {
+        background: white;
+        border-radius: 15px;
+        padding: 35px;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-top: 4px solid var(--secondary);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      }
+
+      .service-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: var(--secondary);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease;
+      }
+
+      .service-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .service-card h3 {
+        color: var(--secondary);
+        margin-bottom: 20px;
+        font-size: 1.6rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .service-card h3 i {
+        font-size: 1.8rem;
+      }
+
+      .service-card ul {
+        list-style-position: inside;
+        margin-bottom: 25px;
+      }
+
+      .service-card li {
+        margin-bottom: 10px;
+        position: relative;
+        padding-left: 25px;
+      }
+
+      .service-card li::before {
+        content: "✓";
+        color: var(--secondary);
+        font-weight: bold;
+        position: absolute;
+        left: 0;
+      }
+
+      .service-price {
+        font-weight: bold;
+        color: var(--primary);
+        font-size: 1.3rem;
+        background: rgba(231, 76, 60, 0.1);
+        display: inline-block;
+        padding: 8px 20px;
+        border-radius: 30px;
+      }
+
+      /* Pricing */
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .pricing-card {
+        border: 1px solid var(--light-gray);
+        border-radius: 15px;
+        padding: 40px 30px;
+        text-align: center;
+        transition: var(--transition);
+        background: white;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .pricing-card.popular::before {
+        content: "Popularne";
+        position: absolute;
+        top: 20px;
+        right: -30px;
+        background: var(--secondary);
+        color: white;
+        padding: 5px 30px;
+        transform: rotate(45deg);
+        font-size: 0.8rem;
+        font-weight: bold;
+      }
+
+      .pricing-card:hover {
+        border-color: var(--secondary);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+        transform: translateY(-10px);
+      }
+
+      .pricing-card h3 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+        color: var(--primary);
+      }
+
+      .pricing-price {
+        font-size: 2.5rem;
+        color: var(--secondary);
+        margin-bottom: 25px;
+        font-weight: bold;
+      }
+
+      .pricing-features {
+        list-style: none;
+        margin-bottom: 35px;
+      }
+
+      .pricing-features li {
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #eee;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        justify-content: center;
+      }
+
+      .pricing-features li i {
+        color: var(--secondary);
+      }
+
+      /* Inspection */
+      .inspection-steps {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        transition: var(--transition);
+      }
+
+      .step:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      }
+
+      .step-number {
+        background: var(--secondary);
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.8rem;
+        font-weight: bold;
+        margin-bottom: 25px;
+        box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+      }
+
+      .step h3 {
+        margin-bottom: 20px;
+        color: var(--primary);
+        font-size: 1.5rem;
+      }
+
+      .inspection-details {
+        background: var(--light);
+        padding: 80px 0;
+      }
+
+      .details-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .detail-card {
+        background: white;
+        padding: 35px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        transition: var(--transition);
+        border-left: 4px solid var(--secondary);
+      }
+
+      .detail-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      }
+
+      .detail-card h3 {
+        color: var(--secondary);
+        margin-bottom: 20px;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .detail-card h3 i {
+        font-size: 1.8rem;
+      }
+
+      /* Gallery */
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+      }
+
+      .gallery-item {
+        height: 220px;
+        overflow: hidden;
+        border-radius: 10px;
+        position: relative;
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .gallery-item:hover img {
+        transform: scale(1.1);
+      }
+
+      .gallery-item::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .gallery-item:hover::after {
+        opacity: 1;
+      }
+
+      /* Contact */
+      .contact {
+        background: var(--light);
+      }
+
+      .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .contact-icon {
+        background: var(--secondary);
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.8rem;
+        flex-shrink: 0;
+        box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+      }
+
+      .contact-item-content h3 {
+        font-size: 1.4rem;
+        margin-bottom: 5px;
+        color: var(--primary);
+      }
+
+      .social-links {
+        display: flex;
+        gap: 15px;
+        margin-top: 30px;
+        justify-content: center;
+      }
+
+      .social-link {
+        background: var(--primary);
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        transition: var(--transition);
+        font-size: 1.3rem;
+        box-shadow: 0 5px 15px rgba(44, 62, 80, 0.2);
+      }
+
+      .social-link:hover {
+        background: var(--secondary);
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(231, 76, 60, 0.4);
+      }
+
+      /* Footer */
+      footer {
+        background: var(--primary);
+        color: white;
+        padding: 70px 0 0;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding-bottom: 50px;
+      }
+
+      .footer-column h3 {
+        font-size: 1.5rem;
+        margin-bottom: 25px;
+        position: relative;
+        padding-bottom: 15px;
+      }
+
+      .footer-column h3::after {
+        content: "";
+        position: absolute;
+        width: 50px;
+        height: 3px;
+        background: var(--secondary);
+        bottom: 0;
+        left: 0;
+        border-radius: 2px;
+      }
+
+      .footer-logo {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .footer-logo i {
+        color: var(--secondary);
+      }
+
+      .footer-column p {
+        margin-bottom: 20px;
+        line-height: 1.8;
+        opacity: 0.9;
+      }
+
+      .footer-links {
+        list-style: none;
+      }
+
+      .footer-links li {
+        margin-bottom: 15px;
+      }
+
+      .footer-links a {
+        color: rgba(255, 255, 255, 0.9);
+        text-decoration: none;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .footer-links a:hover {
+        color: white;
+        transform: translateX(5px);
+      }
+
+      .footer-links a i {
+        color: var(--secondary);
+      }
+
+      .footer-contact-info {
+        list-style: none;
+      }
+
+      .footer-contact-info li {
+        margin-bottom: 20px;
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+      }
+
+      .footer-contact-info i {
+        color: var(--secondary);
+        font-size: 1.2rem;
+        margin-top: 5px;
+      }
+
+      .footer-social {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 25px 0;
+        text-align: center;
+        font-size: 0.9rem;
+        opacity: 0.7;
+      }
+
+      /* Language content */
+      .lang-content {
+        display: none;
+      }
+
+      .lang-content.active {
+        display: block;
+      }
+
+      /* Scroll to top button */
+      .scroll-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background: var(--secondary);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5rem;
+        cursor: pointer;
+        z-index: 99;
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition);
+        box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+      }
+
+      .scroll-top.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .scroll-top:hover {
+        background: #c0392b;
+        transform: translateY(-5px);
+      }
+
+      /* Responsive */
+      @media (min-width: 768px) {
+        .nav-links {
+          display: flex;
+          gap: 30px;
+        }
+
+        .hamburger {
+          display: none;
+        }
+
+        .about-content {
+          flex-direction: row;
+          align-items: center;
+        }
+
+        .services-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .pricing-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        .inspection-steps {
+          grid-template-columns: repeat(4, 1fr);
+        }
+
+        .details-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .gallery-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+
+        .contact-info {
+          flex-direction: row;
+          justify-content: space-around;
+        }
+
+        .footer-content {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+
+      @media (min-width: 992px) {
+        .section-title {
+          font-size: 2.5rem;
+        }
+
+        .header-content h1 {
+          font-size: 3.5rem;
+        }
+
+        .pricing-card.popular {
+          transform: scale(1.05);
+          z-index: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Language Switcher -->
+    <!-- Navigation -->
+    <nav>
+      <div class="container">
+        <div class="logo"><i class="fas fa-car"></i>WitalCar</div>
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="nav-links">
+          <a href="#about">
+            <span class="lang-content active" data-lang="pl">O nas</span>
+            <span class="lang-content" data-lang="uk">Про нас</span>
+            <span class="lang-content" data-lang="ru">О нас</span>
+          </a>
+          <a href="#services">
+            <span class="lang-content active" data-lang="pl">Usługi</span>
+            <span class="lang-content" data-lang="uk">Послуги</span>
+            <span class="lang-content" data-lang="ru">Услуги</span>
+          </a>
+          <a href="#pricing">
+            <span class="lang-content active" data-lang="pl">Cennik</span>
+            <span class="lang-content" data-lang="uk">Ціни</span>
+            <span class="lang-content" data-lang="ru">Цены</span>
+          </a>
+          <a href="#inspection">
+            <span class="lang-content active" data-lang="pl"
+              >Jak sprawdzamy</span
+            >
+            <span class="lang-content" data-lang="uk">Як ми перевіряємо</span>
+            <span class="lang-content" data-lang="ru">Как мы проверяем</span>
+          </a>
+          <a href="#gallery">
+            <span class="lang-content active" data-lang="pl">Galeria</span>
+            <span class="lang-content" data-lang="uk">Галерея</span>
+            <span class="lang-content" data-lang="ru">Галерея</span>
+          </a>
+          <a href="#contact">
+            <span class="lang-content active" data-lang="pl">Kontakt</span>
+            <span class="lang-content" data-lang="uk">Контакти</span>
+            <span class="lang-content" data-lang="ru">Контакты</span>
+          </a>
+        </div>
+        <div class="lang-switcher">
+          <a href="#" class="lang-btn active" data-lang="pl">PL</a>
+          <a href="#" class="lang-btn" data-lang="uk">UK</a>
+          <a href="#" class="lang-btn" data-lang="ru">RU</a>
+        </div>
+      </div>
+    </nav>
+    <!-- Header/Hero -->
+    <header>
+      <div class="header-content">
+        <div class="logo"><i class="fas fa-car"></i>WitalCar</div>
+        <div class="lang-content active" data-lang="pl">
+          <h1>Profesjonalna pomoc w zakupie samochodu</h1>
+          <p>
+            Znajdziemy dla Ciebie najlepszy samochód, przeprowadzimy szczegółową
+            inspekcję i zajmiemy się całą dokumentacją
+          </p>
+        </div>
+        <div class="lang-content" data-lang="uk">
+          <h1>Професійна допомога у покупці автомобіля</h1>
+          <p>
+            Ми знайдемо для вас найкращий автомобіль, проведемо детальний огляд
+            і займемося всією документацією
+          </p>
+        </div>
+        <div class="lang-content" data-lang="ru">
+          <h1>Профессиональная помощь в покупке автомобиля</h1>
+          <p>
+            Мы найдем для вас лучший автомобиль, проведем детальный осмотр и
+            займемся всей документацией
+          </p>
+        </div>
+        <a href="#contact" class="btn">
+          <span class="lang-content active" data-lang="pl">Kontakt</span>
+          <span class="lang-content" data-lang="uk">Контакти</span>
+          <span class="lang-content" data-lang="ru">Контакты</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+      <div class="container">
+        <h2 class="section-title">
+          <span class="lang-content active" data-lang="pl">O nas</span>
+          <span class="lang-content" data-lang="uk">Про нас</span>
+          <span class="lang-content" data-lang="ru">О нас</span>
+        </h2>
+        <div class="about-content">
+          <div class="about-text">
+            <div class="lang-content active" data-lang="pl">
+              <p>
+                Jesteśmy zespołem profesjonalistów z wieloletnim doświadczeniem
+                w branży motoryzacyjnej. Specjalizujemy się w pomocy przy
+                zakupie samochodów używanych, zapewniając naszym klientom
+                bezpieczeństwo i oszczędność czasu.
+              </p>
+              <p>
+                Nasza wiedza i doświadczenie pozwalają nam wykrywać potencjalne
+                problemy z pojazdami, które dla przeciętnego kupującego mogą
+                pozostać niezauważone. Działamy na terenie całej Polski,
+                pomagając klientom znaleźć ich wymarzony samochód.
+              </p>
+            </div>
+            <div class="lang-content" data-lang="uk">
+              <p>
+                Ми - команда професіоналів з багаторічним досвідом у
+                автомобільній галузі. Ми спеціалізуємося на допомозі при покупці
+                вживаних автомобілів, забезпечуючи нашим клієнтам безпеку та
+                економію часу.
+              </p>
+              <p>
+                Наші знання та досвід дозволяють нам виявляти потенційні
+                проблеми з автомобілями, які для звичайного покупця можуть
+                залишитися непоміченими. Ми працюємо по всій Польщі, допомагаючи
+                клієнтам знайти автомобіль їхньої мрії.
+              </p>
+            </div>
+            <div class="lang-content" data-lang="ru">
+              <p>
+                Мы - команда профессионалов с многолетним опытом в автомобильной
+                отрасли. Мы специализируемся на помощи при покупке подержанных
+                автомобилей, обеспечивая нашим клиентам безопасность и экономию
+                времени.
+              </p>
+              <p>
+                Наши знания и опыт позволяют нам выявлять потенциальные проблемы
+                с автомобилями, которые для обычного покупателя могут остаться
+                незамеченными. Мы работаем по всей Польше, помогая клиентам
+                найти автомобиль их мечты.
+              </p>
+            </div>
+          </div>
+          <div class="about-image">
+            <img
+              src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+              alt="O nas"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+      <div class="container">
+        <h2 class="section-title">
+          <span class="lang-content active" data-lang="pl">Nasze usługi</span>
+          <span class="lang-content" data-lang="uk">Наші послуги</span>
+          <span class="lang-content" data-lang="ru">Наши услуги</span>
+        </h2>
+        <div class="services-grid">
+          <!-- Zakup -->
+          <div class="service-card">
+            <h3>
+              <i class="fas fa-search-dollar"></i>
+              <span class="lang-content active" data-lang="pl">Zakup</span>
+              <span class="lang-content" data-lang="uk">Покупка</span>
+              <span class="lang-content" data-lang="ru">Покупка</span>
+            </h3>
+            <ul>
+              <li class="lang-content active" data-lang="pl">
+                Wyszukiwanie najlepszych ofert na rynku
+              </li>
+              <li class="lang-content" data-lang="uk">
+                Пошук найкращих пропозицій на ринку
+              </li>
+              <li class="lang-content" data-lang="ru">
+                Поиск лучших предложений на рынке
+              </li>
+
+              <li class="lang-content active" data-lang="pl">
+                Dojazd na miejsce
+              </li>
+              <li class="lang-content" data-lang="uk">Приїзд на місце</li>
+              <li class="lang-content" data-lang="ru">Приезд на место</li>
+
+              <li class="lang-content active" data-lang="pl">
+                Przeprowadzenie ekspertyzy wizualnej i technicznej pojazdu
+              </li>
+              <li class="lang-content" data-lang="uk">
+                Проведення візуальної та технічної експертизи автомобіля
+              </li>
+              <li class="lang-content" data-lang="ru">
+                Проведение визуальной и технической экспертизы автомобиля
+              </li>
+
+              <li class="lang-content active" data-lang="pl">Jazda próbna</li>
+              <li class="lang-content" data-lang="uk">Тест-драйв</li>
+              <li class="lang-content" data-lang="ru">Тест-драйв</li>
+
+              <li class="lang-content active" data-lang="pl">
+                Negocjacja ceny, podpisanie umowy
+              </li>
+              <li class="lang-content" data-lang="uk">
+                Переговори щодо ціни, підписання договору
+              </li>
+              <li class="lang-content" data-lang="ru">
+                Переговоры о цене, подписание договора
+              </li>
+            </ul>
+            <p class="service-price">
+              <span class="lang-content active" data-lang="pl">od 1350 zł</span>
+              <span class="lang-content" data-lang="uk">від 1350 zł</span>
+              <span class="lang-content" data-lang="ru">от 1350 zł</span>
+            </p>
+          </div>
+
+          <!-- Rejestracja -->
+          <div class="service-card">
+            <h3>
+              <i class="fas fa-file-contract"></i>
+              <span class="lang-content active" data-lang="pl"
+                >Rejestracja</span
+              >
+              <span class="lang-content" data-lang="uk">Реєстрація</span>
+              <span class="lang-content" data-lang="ru">Регистрация</span>
+            </h3>
+            <ul>
+              <li class="lang-content active" data-lang="pl">
+                Rejestracja w urzędzie
+              </li>
+              <li class="lang-content" data-lang="uk">Реєстрація в уряді</li>
+              <li class="lang-content" data-lang="ru">
+                Регистрация в управлении
+              </li>
+
+              <li class="lang-content active" data-lang="pl">
+                Zakup, przedłużenie polisy OC i AC
+              </li>
+              <li class="lang-content" data-lang="uk">
+                Купівля, продовження полісу OC та AC
+              </li>
+              <li class="lang-content" data-lang="ru">
+                Покупка, продление полиса OC и AC
+              </li>
+
+              <li class="lang-content active" data-lang="pl">
+                Przegląd techniczny
+              </li>
+              <li class="lang-content" data-lang="uk">Технічний огляд</li>
+              <li class="lang-content" data-lang="ru">Технический осмотр</li>
+
+              <li class="lang-content active" data-lang="pl">Podatek PCC-3</li>
+              <li class="lang-content" data-lang="uk">Податок PCC-3</li>
+              <li class="lang-content" data-lang="ru">Налог PCC-3</li>
+            </ul>
+            <p class="service-price">
+              <span class="lang-content active" data-lang="pl">od 500 zł</span>
+              <span class="lang-content" data-lang="uk">від 500 zł</span>
+              <span class="lang-content" data-lang="ru">от 500 zł</span>
+            </p>
+          </div>
+
+          <!-- Sprzedaż -->
+          <div class="service-card">
+            <h3>
+              <i class="fas fa-tags"></i>
+              <span class="lang-content active" data-lang="pl">Sprzedaż</span>
+              <span class="lang-content" data-lang="uk">Продаж</span>
+              <span class="lang-content" data-lang="ru">Продажа</span>
+            </h3>
+            <ul>
+              <li class="lang-content active" data-lang="pl">
+                Prace przygotowawcze: czyszczenie, mycie, robienie zdjęć
+              </li>
+              <li class="lang-content" data-lang="uk">
+                Підготовчі роботи: чищення, миття, фотографування
+              </li>
+              <li class="lang-content" data-lang="ru">
+                Подготовительные работы: чистка, мойка, фотографирование
+              </li>
+
+              <li class="lang-content active" data-lang="pl">
+                Umieszczenie ogłoszeń na otomoto i olx
+              </li>
+              <li class="lang-content" data-lang="uk">
+                Розміщення оголошень на otomoto та olx
+              </li>
+              <li class="lang-content" data-lang="ru">
+                Размещение объявлений на otomoto и olx
+              </li>
+
+              <li class="lang-content active" data-lang="pl">
+                Organizacją oględzin dla zainteresowanych
+              </li>
+              <li class="lang-content" data-lang="uk">
+                Організація огляду для зацікавлених
+              </li>
+              <li class="lang-content" data-lang="ru">
+                Организация осмотра для заинтересованных
+              </li>
+
+              <li class="lang-content active" data-lang="pl">
+                Podpisanie umowy i sprzedaż
+              </li>
+              <li class="lang-content" data-lang="uk">
+                Підписання договору та продаж
+              </li>
+              <li class="lang-content" data-lang="ru">
+                Подписание договора и продажа
+              </li>
+            </ul>
+            <p class="service-price">
+              <span class="lang-content active" data-lang="pl">od 800 zł</span>
+              <span class="lang-content" data-lang="uk">від 800 zł</span>
+              <span class="lang-content" data-lang="ru">от 800 zł</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+      <div class="container">
+        <h2 class="section-title">
+          <span class="lang-content active" data-lang="pl">Cennik</span>
+          <span class="lang-content" data-lang="uk">Ціни</span>
+          <span class="lang-content" data-lang="ru">Цены</span>
+        </h2>
+        <div class="pricing-grid">
+          <!-- Podstawowy -->
+          <div class="pricing-card">
+            <h3>
+              <span class="lang-content active" data-lang="pl">Podstawowy</span>
+              <span class="lang-content" data-lang="uk">Базовий</span>
+              <span class="lang-content" data-lang="ru">Базовый</span>
+            </h3>
+            <div class="pricing-price">1350 zł</div>
+            <ul class="pricing-features">
+              <li>
+                <i class="fas fa-check"></i
+                ><span class="lang-content active" data-lang="pl"
+                  >Wyszukiwanie samochodu</span
+                ><span class="lang-content" data-lang="uk"
+                  >Пошук автомобіля</span
+                ><span class="lang-content" data-lang="ru"
+                  >Поиск автомобиля</span
+                >
+              </li>
+              <li>
+                <i class="fas fa-check"></i
+                ><span class="lang-content active" data-lang="pl"
+                  >Oględziny trzech pojazdów</span
+                ><span class="lang-content" data-lang="uk"
+                  >Огляд трьох автомобілів</span
+                ><span class="lang-content" data-lang="ru"
+                  >Осмотр трех автомобилей</span
+                >
+              </li>
+              <li>
+                <i class="fas fa-check"></i
+                ><span class="lang-content active" data-lang="pl"
+                  >Negocjacja ceny</span
+                ><span class="lang-content" data-lang="uk"
+                  >Переговори щодо ціни</span
+                ><span class="lang-content" data-lang="ru"
+                  >Переговоры о цене</span
+                >
+              </li>
+              <li>
+                <i class="fas fa-check"></i
+                ><span class="lang-content active" data-lang="pl"
+                  >Zakup i weryfikacja dokumentów</span
+                ><span class="lang-content" data-lang="uk"
+                  >Покупка та перевірка документів</span
+                ><span class="lang-content" data-lang="ru"
+                  >Покупка и проверка документов</span
+                >
+              </li>
+            </ul>
+            <a href="#contact" class="btn">
+              <span class="lang-content active" data-lang="pl">Wybierz</span>
+              <span class="lang-content" data-lang="uk">Обрати</span>
+              <span class="lang-content" data-lang="ru">Выбрать</span>
+            </a>
+          </div>
+
+          <!-- Standard -->
+          <div class="pricing-card popular">
+            <h3>
+              <span class="lang-content active" data-lang="pl">Standard</span>
+              <span class="lang-content" data-lang="uk">Стандарт</span>
+              <span class="lang-content" data-lang="ru">Стандарт</span>
+            </h3>
+            <div class="pricing-price">1900 zł</div>
+            <ul class="pricing-features">
+              <li>
+                <i class="fas fa-check"></i
+                ><span class="lang-content active" data-lang="pl"
+                  >Wyszukiwanie samochodu</span
+                ><span class="lang-content" data-lang="uk"
+                  >Пошук автомобіля</span
+                ><span class="lang-content" data-lang="ru"
+                  >Поиск автомобиля</span
+                >
+              </li>
+              <li>
+                <i class="fas fa-check"></i
+                ><span class="lang-content active" data-lang="pl"
+                  >Oględziny siedmiu pojazdów</span
+                ><span class="lang-content" data-lang="uk"
+                  >Огляд семи автомобілів</span
+                ><span class="lang-content" data-lang="ru"
+                  >Осмотр семи автомобилей</span
+                >
+              </li>
+              <li>
+                <i class="fas fa-check"></i
+                ><span class="lang-content active" data-lang="pl"
+                  >Negocjacja ceny</span
+                ><span class="lang-content" data-lang="uk"
+                  >Переговори щодо ціни</span
+                ><span class="lang-content" data-lang="ru"
+                  >Переговоры о цене</span
+                >
+              </li>
+              <li>
+                <i class="fas fa-check"></i
+                ><span class="lang-content active" data-lang="pl"
+                  >Zakup i weryfikacja dokumentów</span
+                ><span class="lang-content" data-lang="uk"
+                  >Покупка та перевірка документів</span
+                ><span class="lang-content" data-lang="ru"
+                  >Покупка и проверка документов</span
+                >
+              </li>
+              <li>
+                <i class="fas fa-check"></i
+                ><span class="lang-content active" data-lang="pl"
+                  >Rejestracja w urzędzie</span
+                ><span class="lang-content" data-lang="uk"
+                  >Реєстрація в уряді</span
+                ><span class="lang-content" data-lang="ru"
+                  >Регистрация в управлении</span
+                >
+              </li>
+              <li>
+                <i class="fas fa-check"></i
+                ><span class="lang-content active" data-lang="pl"
+                  >Zakup polisy</span
+                ><span class="lang-content" data-lang="uk">Купівля полісу</span
+                ><span class="lang-content" data-lang="ru">Покупка полиса</span>
+              </li>
+              <li>
+                <i class="fas fa-check"></i
+                ><span class="lang-content active" data-lang="pl"
+                  >Service (olej, filtry)</span
+                ><span class="lang-content" data-lang="uk"
+                  >Сервіс (мастило, фільтри)</span
+                ><span class="lang-content" data-lang="ru"
+                  >Сервис (масло, фильтры)</span
+                >
+              </li>
+            </ul>
+            <a href="#contact" class="btn">
+              <span class="lang-content active" data-lang="pl">Wybierz</span>
+              <span class="lang-content" data-lang="uk">Обрати</span>
+              <span class="lang-content" data-lang="ru">Выбрать</span>
+            </a>
+          </div>
+
+          <!-- Premium -->
+          <div class="pricing-card">
+            <h3>
+              <span class="lang-content active" data-lang="pl">Premium</span>
+              <span class="lang-content" data-lang="uk">Преміум</span>
+              <span class="lang-content" data-lang="ru">Премиум</span>
+            </h3>
+            <div class="pricing-price">2200 zł</div>
+            <ul class="pricing-features">
+              <li>
+                <i class="fas fa-check"></i
+                ><span class="lang-content active" data-lang="pl"
+                  >Wyszukiwanie samochodu</span
+                ><span class="lang-content" data-lang="uk"
+                  >Пошук автомобіля</span
+                ><span class="lang-content" data-lang="ru"
+                  >Поиск автомобиля</span
+                >
+              </li>
+              <li>
+                <i class="fas fa-check"></i
+                ><span class="lang-content active" data-lang="pl"
+                  >Oględziny dwunastu pojazdów</span
+                ><span class="lang-content" data-lang="uk"
+                  >Огляд дванадцяти автомобілів</span
+                ><span class="lang-content" data-lang="ru"
+                  >Осмотр двенадцати автомобилей</span
+                >
+              </li>
+              <li>
+                <i class="fas fa-check"></i
+                ><span class="lang-content active" data-lang="pl"
+                  >Negocjacja ceny</span
+                ><span class="lang-content" data-lang="uk"
+                  >Переговори щодо ціни</span
+                ><span class="lang-content" data-lang="ru"
+                  >Переговоры о цене</span
+                >
+              </li>
+              <li>
+                <i class="fas fa-check"></i
+                ><span class="lang-content active" data-lang="pl"
+                  >Zakup i weryfikacja dokumentów</span
+                ><span class="lang-content" data-lang="uk"
+                  >Покупка та перевірка документів</span
+                ><span class="lang-content" data-lang="ru"
+                  >Покупка и проверка документов</span
+                >
+              </li>
+              <li>
+                <i class="fas fa-check"></i
+                ><span class="lang-content active" data-lang="pl"
+                  >Rejestracja w urzędzie</span
+                ><span class="lang-content" data-lang="uk"
+                  >Реєстрація в уряді</span
+                ><span class="lang-content" data-lang="ru"
+                  >Регистрация в управлении</span
+                >
+              </li>
+              <li>
+                <i class="fas fa-check"></i
+                ><span class="lang-content active" data-lang="pl"
+                  >Zakup polisy</span
+                ><span class="lang-content" data-lang="uk">Купівля полісу</span
+                ><span class="lang-content" data-lang="ru">Покупка полиса</span>
+              </li>
+              <li>
+                <i class="fas fa-check"></i
+                ><span class="lang-content active" data-lang="pl"
+                  >Service (olej, filtry)</span
+                ><span class="lang-content" data-lang="uk"
+                  >Сервіс (мастило, фільтри)</span
+                ><span class="lang-content" data-lang="ru"
+                  >Сервис (масло, фильтры)</span
+                >
+              </li>
+              <li>
+                <i class="fas fa-check"></i
+                ><span class="lang-content active" data-lang="pl"
+                  >Opłata skarbowa</span
+                ><span class="lang-content" data-lang="uk">Податок</span
+                ><span class="lang-content" data-lang="ru">Налог</span>
+              </li>
+              <li>
+                <i class="fas fa-check"></i
+                ><span class="lang-content active" data-lang="pl"
+                  >Czyszczenie i mycie</span
+                ><span class="lang-content" data-lang="uk"
+                  >Чищення та миття</span
+                ><span class="lang-content" data-lang="ru">Чистка и мойка</span>
+              </li>
+            </ul>
+            <a href="#contact" class="btn">
+              <span class="lang-content active" data-lang="pl">Wybierz</span>
+              <span class="lang-content" data-lang="uk">Обрати</span>
+              <span class="lang-content" data-lang="ru">Выбрать</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Inspection Section -->
+    <section id="inspection" class="inspection">
+      <div class="container">
+        <h2 class="section-title">
+          <span class="lang-content active" data-lang="pl"
+            >Jak sprawdzamy samochód?</span
+          >
+          <span class="lang-content" data-lang="uk"
+            >Як ми перевіряємо автомобіль?</span
+          >
+          <span class="lang-content" data-lang="ru"
+            >Как мы проверяем автомобиль?</span
+          >
+        </h2>
+        <div class="lang-content active" data-lang="pl">
+          <p
+            style="
+              text-align: center;
+              margin-bottom: 40px;
+              max-width: 800px;
+              margin-left: auto;
+              margin-right: auto;
+            "
+          >
+            Sprawdzamy wiarygodność przebiegu auta, jego historii, pomiar
+            lakieru, karoserii, szyb, opon, wnętrza, stan silnika, sprawdzenie
+            komputerem diagnostycznym oraz od spodu na kanale
+          </p>
+        </div>
+        <div class="lang-content" data-lang="uk">
+          <p
+            style="
+              text-align: center;
+              margin-bottom: 40px;
+              max-width: 800px;
+              margin-left: auto;
+              margin-right: auto;
+            "
+          >
+            Ми перевіряємо достовірність пробігу автомобіля, його історію,
+            вимірювання фарби, кузова, шин, салону, стан двигуна, перевірку
+            діагностичним комп'ютером та знизу на каналі
+          </p>
+        </div>
+        <div class="lang-content" data-lang="ru">
+          <p
+            style="
+              text-align: center;
+              margin-bottom: 40px;
+              max-width: 800px;
+              margin-left: auto;
+              margin-right: auto;
+            "
+          >
+            Мы проверяем достоверность пробега автомобиля, его историю,
+            измерение краски, кузова, шин, салона, состояние двигателя, проверку
+            диагностическим компьютером и снизу на канале
+          </p>
+        </div>
+
+        <div class="inspection-steps">
+          <!-- Step 1 -->
+          <div class="step">
+            <div class="step-number">1</div>
+            <h3>
+              <span class="lang-content active" data-lang="pl"
+                >Weryfikacja ogłoszenia</span
+              >
+              <span class="lang-content" data-lang="uk"
+                >Перевірка оголошення</span
+              >
+              <span class="lang-content" data-lang="ru"
+                >Проверка объявления</span
+              >
+            </h3>
+            <div class="lang-content active" data-lang="pl">
+              <p>
+                Sprawdzamy wiarygodność informacji umieszczonych w ogłoszeniu.
+                Łatwo można zostać ofiarą oszustów. Są też komisy lub salony
+                samochodowe, oferta których nie warta uwagi
+              </p>
+            </div>
+            <div class="lang-content" data-lang="uk">
+              <p>
+                Перевіряємо достовірність інформації, розміщеної в оголошенні.
+                Легко можна стати жертвою шахраїв. Є також комісійні або
+                автосалони, пропозиції яких не варті уваги
+              </p>
+            </div>
+            <div class="lang-content" data-lang="ru">
+              <p>
+                Проверяем достоверность информации, размещенной в объявлении.
+                Легко можно стать жертвой мошенников. Есть также комиссионные
+                или автосалоны, предложения которых не стоят внимания
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="step">
+            <div class="step-number">2</div>
+            <h3>
+              <span class="lang-content active" data-lang="pl"
+                >Kontakt z sprzedawcą</span
+              >
+              <span class="lang-content" data-lang="uk"
+                >Контакт з продавцем</span
+              >
+              <span class="lang-content" data-lang="ru"
+                >Контакт с продавцом</span
+              >
+            </h3>
+            <div class="lang-content active" data-lang="pl">
+              <p>
+                Czasami wystarczy 2-3 zdania aby wiedzieć czy samochód wart
+                uwagi czy nie. Jest to bardzo ważny aspekt
+              </p>
+            </div>
+            <div class="lang-content" data-lang="uk">
+              <p>
+                Іноді достатньо 2-3 речень, щоб зрозуміти, чи вартий автомобіль
+                уваги чи ні. Це дуже важливий аспект
+              </p>
+            </div>
+            <div class="lang-content" data-lang="ru">
+              <p>
+                Иногда достаточно 2-3 предложений, чтобы понять, стоит
+                автомобиль внимания или нет. Это очень важный аспект
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="step">
+            <div class="step-number">3</div>
+            <h3>
+              <span class="lang-content active" data-lang="pl"
+                >Szczegółowa kontrola</span
+              >
+              <span class="lang-content" data-lang="uk"
+                >Детальний контроль</span
+              >
+              <span class="lang-content" data-lang="ru"
+                >Детальный контроль</span
+              >
+            </h3>
+            <div class="lang-content active" data-lang="pl">
+              <p>
+                Sprawdzanie samochodu krok po kroku, jazda testowa, wysyłka
+                zdjęć i nagrań do klienta. Na zakończenie rozmowa telefoniczna z
+                podsumowaniem inspekcji.
+              </p>
+            </div>
+            <div class="lang-content" data-lang="uk">
+              <p>
+                Перевірка автомобіля крок за кроком, тест-драйв, надсилання фото
+                та записів клієнту. На завершення - телефонна розмова з
+                підсумком огляду.
+              </p>
+            </div>
+            <div class="lang-content" data-lang="ru">
+              <p>
+                Проверка автомобиля шаг за шагом, тест-драйв, отправка фото и
+                записей клиенту. В завершение - телефонный разговор с итогом
+                осмотра.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="step">
+            <div class="step-number">4</div>
+            <h3>
+              <span class="lang-content active" data-lang="pl">Negocjacja</span>
+              <span class="lang-content" data-lang="uk">Переговори</span>
+              <span class="lang-content" data-lang="ru">Переговоры</span>
+            </h3>
+            <div class="lang-content active" data-lang="pl">
+              <p>
+                Na życzenie klienta ustalamy szczegóły transakcji, sprawdzamy
+                dokumenty pojazdy i negocjujemy warunki.
+              </p>
+            </div>
+            <div class="lang-content" data-lang="uk">
+              <p>
+                За бажанням клієнта визначаємо деталі угоди, перевіряємо
+                документи автомобіля та ведемо переговори про умови.
+              </p>
+            </div>
+            <div class="lang-content" data-lang="ru">
+              <p>
+                По желанию клиента определяем детали сделки, проверяем документы
+                автомобиля и ведем переговоры об условиях.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Inspection Details -->
+    <section class="inspection-details">
+      <div class="container">
+        <h2 class="section-title">
+          <span class="lang-content active" data-lang="pl">Co sprawdzamy?</span>
+          <span class="lang-content" data-lang="uk">Що ми перевіряємо?</span>
+          <span class="lang-content" data-lang="ru">Что мы проверяем?</span>
+        </h2>
+        <div class="details-grid">
+          <!-- Sprawdzenie historii -->
+          <div class="detail-card">
+            <h3>
+              <i class="fas fa-history"></i>
+              <span class="lang-content active" data-lang="pl"
+                >Sprawdzenie historii</span
+              >
+              <span class="lang-content" data-lang="uk">Перевірка історії</span>
+              <span class="lang-content" data-lang="ru">Проверка истории</span>
+            </h3>
+            <div class="lang-content active" data-lang="pl">
+              <p>
+                Książki serwisowe, raporty, historiapojazdu, carfax i inne
+                źródła pozyskania informacji o pojeździe
+              </p>
+            </div>
+            <div class="lang-content" data-lang="uk">
+              <p>
+                Сервісні книжки, звіти, історія автомобіля, carfax та інші
+                джерела отримання інформації про автомобіль
+              </p>
+            </div>
+            <div class="lang-content" data-lang="ru">
+              <p>
+                Сервисные книжки, отчеты, история автомобиля, carfax и другие
+                источники получения информации об автомобиле
+              </p>
+            </div>
+          </div>
+
+          <!-- Karoseria -->
+          <div class="detail-card">
+            <h3>
+              <i class="fas fa-car-side"></i>
+              <span class="lang-content active" data-lang="pl">Karoseria</span>
+              <span class="lang-content" data-lang="uk">Кузов</span>
+              <span class="lang-content" data-lang="ru">Кузов</span>
+            </h3>
+            <div class="lang-content active" data-lang="pl">
+              <p>
+                Pomiar lakieru, sprawdzenie szczelin, szyb, data produkcji
+                poszczególnych elementów.
+              </p>
+            </div>
+            <div class="lang-content" data-lang="uk">
+              <p>
+                Вимірювання фарби, перевірка щілин, скла, дата виробництва
+                окремих елементів.
+              </p>
+            </div>
+            <div class="lang-content" data-lang="ru">
+              <p>
+                Измерение краски, проверка щелей, стекол, дата производства
+                отдельных элементов.
+              </p>
+            </div>
+          </div>
+
+          <!-- Stan techniczny -->
+          <div class="detail-card">
+            <h3>
+              <i class="fas fa-cogs"></i>
+              <span class="lang-content active" data-lang="pl"
+                >Stan techniczny</span
+              >
+              <span class="lang-content" data-lang="uk">Технічний стан</span>
+              <span class="lang-content" data-lang="ru"
+                >Техническое состояние</span
+              >
+            </h3>
+            <div class="lang-content active" data-lang="pl">
+              <p>
+                Praca silnika, wycieki i inne usterki, które mogą doprowadzić do
+                wydatków
+              </p>
+            </div>
+            <div class="lang-content" data-lang="uk">
+              <p>
+                Робота двигуна, витіки та інші несправності, які можуть
+                призвести до витрат
+              </p>
+            </div>
+            <div class="lang-content" data-lang="ru">
+              <p>
+                Работа двигателя, утечки и другие неисправности, которые могут
+                привести к расходам
+              </p>
+            </div>
+          </div>
+
+          <!-- Elektronika -->
+          <div class="detail-card">
+            <h3>
+              <i class="fas fa-microchip"></i>
+              <span class="lang-content active" data-lang="pl"
+                >Elektronika</span
+              >
+              <span class="lang-content" data-lang="uk">Електроніка</span>
+              <span class="lang-content" data-lang="ru">Электроника</span>
+            </h3>
+            <div class="lang-content active" data-lang="pl">
+              <p>
+                Podpicie profesjonalnego komputera dla odczytu błędów
+                poszczególnych modułów pojazdu.
+              </p>
+            </div>
+            <div class="lang-content" data-lang="uk">
+              <p>
+                Підключення професійного комп'ютера для зчитування помилок
+                окремих модулів автомобіля.
+              </p>
+            </div>
+            <div class="lang-content" data-lang="ru">
+              <p>
+                Подключение профессионального компьютера для считывания ошибок
+                отдельных модулей автомобиля.
+              </p>
+            </div>
+          </div>
+
+          <!-- Jazda testowa -->
+          <div class="detail-card">
+            <h3>
+              <i class="fas fa-road"></i>
+              <span class="lang-content active" data-lang="pl"
+                >Jazda testowa</span
+              >
+              <span class="lang-content" data-lang="uk">Тест-драйв</span>
+              <span class="lang-content" data-lang="ru">Тест-драйв</span>
+            </h3>
+            <div class="lang-content active" data-lang="pl">
+              <p>
+                Sprawdzenie stanu w trakcie jazdy, przyśpieszenie, hamowanie i
+                układ kierowniczy.
+              </p>
+            </div>
+            <div class="lang-content" data-lang="uk">
+              <p>
+                Перевірка стану під час їзди, прискорення, гальмування та
+                система керування.
+              </p>
+            </div>
+            <div class="lang-content" data-lang="ru">
+              <p>
+                Проверка состояния во время езды, ускорение, торможение и
+                система управления.
+              </p>
+            </div>
+          </div>
+
+          <!-- Dokumentacja -->
+          <div class="detail-card">
+            <h3>
+              <i class="fas fa-file-alt"></i>
+              <span class="lang-content active" data-lang="pl"
+                >Dokumentacja</span
+              >
+              <span class="lang-content" data-lang="uk">Документація</span>
+              <span class="lang-content" data-lang="ru">Документация</span>
+            </h3>
+            <div class="lang-content active" data-lang="pl">
+              <p>
+                Umowa od Niemca, brak opłaconej akcyzy, nieopłacone ubezpiecznie
+                i wiele innych rzeczy, które mogą powodować problemy
+              </p>
+            </div>
+            <div class="lang-content" data-lang="uk">
+              <p>
+                Договір від німця, несплачений акциз, неоплачене страхування та
+                багато інших речей, які можуть спричинити проблеми
+              </p>
+            </div>
+            <div class="lang-content" data-lang="ru">
+              <p>
+                Договор от немца, неуплаченный акциз, неоплаченная страховка и
+                много других вещей, которые могут вызвать проблемы
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+      <div class="container">
+        <h2 class="section-title">
+          <span class="lang-content active" data-lang="pl">Galeria</span>
+          <span class="lang-content" data-lang="uk">Галерея</span>
+          <span class="lang-content" data-lang="ru">Галерея</span>
+        </h2>
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+              alt="Gallery Image"
+            />
+          </div>
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+              alt="Gallery Image"
+            />
+          </div>
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+              alt="Gallery Image"
+            />
+          </div>
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+              alt="Gallery Image"
+            />
+          </div>
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+              alt="Gallery Image"
+            />
+          </div>
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1542362567-b07e54358753?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+              alt="Gallery Image"
+            />
+          </div>
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1502877338535-766e1452684a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+              alt="Gallery Image"
+            />
+          </div>
+          <div class="gallery-item">
+            <img
+              src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80"
+              alt="Gallery Image"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <h2 class="section-title">
+          <span class="lang-content active" data-lang="pl">Kontakt</span>
+          <span class="lang-content" data-lang="uk">Контакти</span>
+          <span class="lang-content" data-lang="ru">Контакты</span>
+        </h2>
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="contact-icon">📞</div>
+            <div class="contact-item-content">
+              <h3>
+                <span class="lang-content active" data-lang="pl">Telefon</span>
+                <span class="lang-content" data-lang="uk">Телефон</span>
+                <span class="lang-content" data-lang="ru">Телефон</span>
+              </h3>
+              <p>+48 123 456 789</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">✉️</div>
+            <div class="contact-item-content">
+              <h3>Email</h3>
+              <p>kontakt@witalcar.pl</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div class="contact-item-content">
+              <h3>
+                <span class="lang-content active" data-lang="pl">Adres</span>
+                <span class="lang-content" data-lang="uk">Адреса</span>
+                <span class="lang-content" data-lang="ru">Адрес</span>
+              </h3>
+              <p>Warszawa, ul. Przykładowa 123</p>
+            </div>
+          </div>
+        </div>
+        <div class="social-links">
+          <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-column">
+            <div class="footer-logo"><i class="fas fa-car"></i>WitalCar</div>
+            <div class="lang-content active" data-lang="pl">
+              <p>
+                Profesjonalna pomoc w zakupie samochodu. Znajdziemy dla Ciebie
+                najlepszy samochód, przeprowadzimy szczegółową inspekcję i
+                zajmiemy się całą dokumentacją.
+              </p>
+            </div>
+            <div class="lang-content" data-lang="uk">
+              <p>
+                Професійна допомога у покупці автомобіля. Ми знайдемо для вас
+                найкращий автомобіль, проведемо детальний огляд і займемося
+                всією документацією.
+              </p>
+            </div>
+            <div class="lang-content" data-lang="ru">
+              <p>
+                Профессиональная помощь в покупке автомобиля. Мы найдем для вас
+                лучший автомобиль, проведем детальный осмотр и займемся всей
+                документацией.
+              </p>
+            </div>
+            <div class="footer-social">
+              <a href="#" class="social-link"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="#" class="social-link"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="#" class="social-link"
+                ><i class="fab fa-telegram"></i
+              ></a>
+              <a href="#" class="social-link"
+                ><i class="fab fa-whatsapp"></i
+              ></a>
+            </div>
+          </div>
+
+          <div class="footer-column">
+            <h3>
+              <span class="lang-content active" data-lang="pl">Linki</span>
+              <span class="lang-content" data-lang="uk">Посилання</span>
+              <span class="lang-content" data-lang="ru">Ссылки</span>
+            </h3>
+            <ul class="footer-links">
+              <li>
+                <a href="#about"
+                  ><i class="fas fa-chevron-right"></i
+                  ><span class="lang-content active" data-lang="pl">O nas</span
+                  ><span class="lang-content" data-lang="uk">Про нас</span
+                  ><span class="lang-content" data-lang="ru">О нас</span></a
+                >
+              </li>
+              <li>
+                <a href="#services"
+                  ><i class="fas fa-chevron-right"></i
+                  ><span class="lang-content active" data-lang="pl">Usługi</span
+                  ><span class="lang-content" data-lang="uk">Послуги</span
+                  ><span class="lang-content" data-lang="ru">Услуги</span></a
+                >
+              </li>
+              <li>
+                <a href="#pricing"
+                  ><i class="fas fa-chevron-right"></i
+                  ><span class="lang-content active" data-lang="pl">Cennik</span
+                  ><span class="lang-content" data-lang="uk">Ціни</span
+                  ><span class="lang-content" data-lang="ru">Цены</span></a
+                >
+              </li>
+              <li>
+                <a href="#inspection"
+                  ><i class="fas fa-chevron-right"></i
+                  ><span class="lang-content active" data-lang="pl"
+                    >Jak sprawdzamy</span
+                  ><span class="lang-content" data-lang="uk"
+                    >Як ми перевіряємо</span
+                  ><span class="lang-content" data-lang="ru"
+                    >Как мы проверяем</span
+                  ></a
+                >
+              </li>
+              <li>
+                <a href="#gallery"
+                  ><i class="fas fa-chevron-right"></i
+                  ><span class="lang-content active" data-lang="pl"
+                    >Galeria</span
+                  ><span class="lang-content" data-lang="uk">Галерея</span
+                  ><span class="lang-content" data-lang="ru">Галерея</span></a
+                >
+              </li>
+              <li>
+                <a href="#contact"
+                  ><i class="fas fa-chevron-right"></i
+                  ><span class="lang-content active" data-lang="pl"
+                    >Kontakt</span
+                  ><span class="lang-content" data-lang="uk">Контакти</span
+                  ><span class="lang-content" data-lang="ru">Контакты</span></a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer-column">
+            <h3>
+              <span class="lang-content active" data-lang="pl">Kontakt</span>
+              <span class="lang-content" data-lang="uk">Контакти</span>
+              <span class="lang-content" data-lang="ru">Контакты</span>
+            </h3>
+            <ul class="footer-contact-info">
+              <li>
+                <i class="fas fa-map-marker-alt"></i>
+                <div>
+                  <span class="lang-content active" data-lang="pl"
+                    >Warszawa, ul. Przykładowa 123</span
+                  >
+                  <span class="lang-content" data-lang="uk"
+                    >Варшава, вул. Прикладова 123</span
+                  >
+                  <span class="lang-content" data-lang="ru"
+                    >Варшава, ул. Примерная 123</span
+                  >
+                </div>
+              </li>
+              <li>
+                <i class="fas fa-phone-alt"></i>
+                <div>+48 123 456 789</div>
+              </li>
+              <li>
+                <i class="fas fa-envelope"></i>
+                <div>kontakt@witalcar.pl</div>
+              </li>
+              <li>
+                <i class="fas fa-clock"></i>
+                <div>
+                  <span class="lang-content active" data-lang="pl"
+                    >Pon-Pt: 8:00-18:00<br />Sb: 9:00-14:00</span
+                  >
+                  <span class="lang-content" data-lang="uk"
+                    >Пн-Пт: 8:00-18:00<br />Сб: 9:00-14:00</span
+                  >
+                  <span class="lang-content" data-lang="ru"
+                    >Пн-Пт: 8:00-18:00<br />Сб: 9:00-14:00</span
+                  >
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- <div class="footer-column">
+            <h3>
+              <span class="lang-content active" data-lang="pl">Newsletter</span>
+              <span class="lang-content" data-lang="uk">Розсилка</span>
+              <span class="lang-content" data-lang="ru">Рассылка</span>
+            </h3>
+            <div class="lang-content active" data-lang="pl">
+              <p>
+                Zapisz się do naszego newslettera, aby otrzymywać najnowsze
+                informacje i promocje.
+              </p>
+            </div>
+            <div class="lang-content" data-lang="uk">
+              <p>
+                Підпишіться на нашу розсилку, щоб отримувати останні новини та
+                акції.
+              </p>
+            </div>
+            <div class="lang-content" data-lang="ru">
+              <p>
+                Подпишитесь на нашу рассылку, чтобы получать последние новости и
+                акции.
+              </p>
+            </div>
+            <form class="newsletter-form">
+              <input
+                type="email"
+                placeholder="Twój email"
+                class="lang-content active"
+                data-lang="pl"
+              />
+              <input
+                type="email"
+                placeholder="Ваша електронна адреса"
+                class="lang-content"
+                data-lang="uk"
+              />
+              <input
+                type="email"
+                placeholder="Ваш email"
+                class="lang-content"
+                data-lang="ru"
+              />
+              <button type="submit" class="btn">
+                <span class="lang-content active" data-lang="pl"
+                  >Zapisz się</span
+                >
+                <span class="lang-content" data-lang="uk">Підписатися</span>
+                <span class="lang-content" data-lang="ru">Подписаться</span>
+              </button>
+            </form>
+          </div> -->
+        </div>
+        <div class="footer-bottom">
+          <p>
+            &copy; 2023 WitalCar.
+            <span class="lang-content active" data-lang="pl"
+              >Wszystkie prawa zastrzeżone.</span
+            >
+            <span class="lang-content" data-lang="uk">Всі права захищені.</span>
+            <span class="lang-content" data-lang="ru">Все права защищены.</span>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scroll to top button -->
+    <div class="scroll-top">
+      <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+      // Mobile menu toggle
+      const hamburger = document.querySelector(".hamburger");
+      const navLinks = document.querySelector(".nav-links");
+
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        navLinks.classList.toggle("active");
+      });
+
+      // Language switcher
+      const langBtns = document.querySelectorAll(".lang-btn");
+      const langContents = document.querySelectorAll(".lang-content");
+
+      langBtns.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          const lang = btn.dataset.lang;
+
+          // Update active button
+          langBtns.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+
+          // Show/hide content
+          langContents.forEach((content) => {
+            if (content.dataset.lang === lang) {
+              content.classList.add("active");
+            } else {
+              content.classList.remove("active");
+            }
+          });
+        });
+      });
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+
+          // Close mobile menu if open
+          if (navLinks.classList.contains("active")) {
+            hamburger.classList.remove("active");
+            navLinks.classList.remove("active");
+          }
+        });
+      });
+
+      // Scroll to top button
+      const scrollTopBtn = document.querySelector(".scroll-top");
+
+      window.addEventListener("scroll", () => {
+        if (window.pageYOffset > 300) {
+          scrollTopBtn.classList.add("active");
+        } else {
+          scrollTopBtn.classList.remove("active");
+        }
+      });
+
+      scrollTopBtn.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+
+      // Add animation on scroll
+      const observerOptions = {
+        threshold: 0.1,
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate");
+          }
+        });
+      }, observerOptions);
+
+      document
+        .querySelectorAll(
+          ".service-card, .pricing-card, .step, .detail-card, .gallery-item"
+        )
+        .forEach((el) => {
+          observer.observe(el);
+        });
+    </script>
+  </body>
+</html>
